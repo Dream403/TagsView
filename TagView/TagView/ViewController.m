@@ -25,14 +25,14 @@
      self.tagView.tags = dataArray;
      self.tagView.tagcornerRadius  = 10;
     CGRect frame  =  self.tagView.frame;
-    self.tagView.backgroundColor  = [UIColor whiteColor];
-    self.tagView.tagNormaBackgroundlColor  = [UIColor grayColor];
-    frame.size.height  = self.tagView.contentHeigth;
+    self.tagView.contenBGColor  = [UIColor blueColor];
+//    frame.size.height  = self.tagView.contentHeigth;
     self.tagView.longPressMove =YES;
     [ self.tagView setFrame:frame];
     self.tagView.allowsSelection =YES;
      self.tagView.delegate  =self;
     [self.view addSubview: self.tagView];
+
 }
 
 - (IBAction)action:(id)sender {
