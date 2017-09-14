@@ -312,10 +312,6 @@ static NSString * const CollectionViewCellID = @"TagViewCollectionViewCell";
                                                            metrics:nil
                                                              views:views]];
     [self addConstraints:constraints];
-    
-    CGRect  frame = self.frame;
-    frame.size.height = self.intrinsicContentSize.height;
-    self.frame = frame; 
 }
 - (CGSize)intrinsicContentSize {
     CGSize contentSize = self.collectionView.collectionViewLayout.collectionViewContentSize;
@@ -392,7 +388,7 @@ static NSString * const CollectionViewCellID = @"TagViewCollectionViewCell";
 
 -(void)removeWithTag:(NSString *)tagTitle{
  
-   [self removeWithIndex:[self indexWithTag:tagTitle]];
+  return [self removeWithIndex:[self indexWithTag:tagTitle]];
     
 }
 -(void)removeWithIndex:(NSUInteger )Index{
