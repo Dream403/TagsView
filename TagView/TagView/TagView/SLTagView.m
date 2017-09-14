@@ -541,6 +541,8 @@ static NSString * const CollectionViewCellID = @"TagViewCollectionViewCell";
 }
 - (void)setCell:(TagViewCollectionViewCell *)cell selected:(BOOL)selected {
     
+    
+    
     if (selected) {
         cell.tagLabel.backgroundColor = self.tagSelectedBackgroundColor;
         cell.tagLabel.font = self.tagSelectedFont;
