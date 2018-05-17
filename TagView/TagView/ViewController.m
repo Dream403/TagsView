@@ -8,6 +8,13 @@
 
 #import "ViewController.h"
 #import "SLTagView.h"
+
+#define FontPingFangSC(Size) [UIFont fontWithName:@"PingFangSC-Regular" size:Size]
+
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
+#define UIColorFromRGBA(rgbValue,a) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:a]
+
 @interface ViewController ()<SLTagViewDelegate>
 
 @property(nonatomic,strong) SLTagView *tagView ;
@@ -23,13 +30,24 @@
      self.tagView.backgroundColor = [UIColor whiteColor];
     NSArray *dataArray = @[@"HHFAHKF",@"FFEASFASDF",@"小虾米",@"kfhasdlkfhadskfhaskjfhaskljhflaskjdhflkashfladksj",@"数据",@"我只是一个轮子"];
      self.tagView.tags = dataArray;
-     self.tagView.tagcornerRadius  = 10;
-    CGRect frame  =  self.tagView.frame;
-    self.tagView.contenBGColor  = [UIColor blueColor];
-//    frame.size.height  = self.tagView.contentHeigth;
-    self.tagView.longPressMove =YES;
-    [ self.tagView setFrame:frame];
+    self.tagView.tagFont =FontPingFangSC(12);
+    self.tagView.tagSelectedFont =FontPingFangSC(12);
+    self.tagView.tagHeight =25;
+    self.tagView.tagcornerRadius  = 5;
     self.tagView.allowsSelection =YES;
+    self.tagView.allowsMultipleSelection  =YES;
+    self.tagView.contenBGColor  = [UIColor whiteColor];
+     self.tagView.tagNormaBackgroundlColor  = [UIColor whiteColor];
+    self.tagView.tagSelectedBackgroundColor  = [UIColor whiteColor];
+    self.tagView.tagSelectedTextColor  = UIColorFromRGB(0xff758c);
+    self.tagView.tagNormaTextColor  = UIColorFromRGB(0X646464);
+    self.tagView.tagSelectedBoaderColor  = UIColorFromRGB(0xff758c);
+    self.tagView.tagNormalBoaderColor  = UIColorFromRGB(0Xf0f0f0);
+    self.tagView.tagBorderWidth  = 0.5;
+    CGRect frame = self.tagView.frame;
+    frame.size.height =[self.tagView contentHeigth];
+    [ self.tagView setFrame:frame];
+    self.tagView.longPressMove =NO;
      self.tagView.delegate  =self;
     [self.view addSubview: self.tagView];
 

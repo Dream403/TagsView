@@ -46,7 +46,7 @@ static NSString * const CollectionViewCellID = @"TagViewCollectionViewCell";
     
     CGSize textSize = [_title boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, 1000)
                                           options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:tagFont} context:nil].size;
-    _tagContentSize = CGSizeMake(ceil(textSize.width+5), ceil(textSize.height));
+    _tagContentSize = CGSizeMake(ceil(textSize.width+20), ceil(textSize.height));
 }
 @end
 
@@ -283,7 +283,7 @@ static NSString * const CollectionViewCellID = @"TagViewCollectionViewCell";
  
     _contentInsets = UIEdgeInsetsMake(5, 5, 5, 5);
     
-    _tagInsets = UIEdgeInsetsMake(1, 1, 1, 1);
+    _tagInsets = UIEdgeInsetsMake(2, 2,2,2);
     
     _allowsMultipleSelection =NO;
     
@@ -301,17 +301,12 @@ static NSString * const CollectionViewCellID = @"TagViewCollectionViewCell";
     ;
     UICollectionView *collectionView = self.subviews.firstObject;
      collectionView.translatesAutoresizingMaskIntoConstraints = NO;
-     NSDictionary *views = NSDictionaryOfVariableBindings(collectionView);
-    NSArray *constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[collectionView]|"
-                                                                   options:NSLayoutFormatAlignAllTop
-                                                                   metrics:nil
-                                                                     views:views];
-    constraints = [constraints arrayByAddingObjectsFromArray:
-                   [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[collectionView]|"
-                                                           options:0
-                                                           metrics:nil
-                                                             views:views]];
-    [self addConstraints:constraints];
+
+    NSLayoutConstraint *leftContraint = [NSLayoutConstraint constraintWithItem:collectionView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
+    NSLayoutConstraint *rightContraint = [NSLayoutConstraint constraintWithItem:collectionView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
+    NSLayoutConstraint *topContraint = [NSLayoutConstraint constraintWithItem:collectionView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
+    NSLayoutConstraint *bottomContraint = [NSLayoutConstraint constraintWithItem:collectionView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
+    [self addConstraints:@[leftContraint,rightContraint,topContraint,bottomContraint]];
     
     CGRect  frame = self.frame;
     frame.size.height = self.intrinsicContentSize.height;
@@ -599,7 +594,6 @@ static NSString * const CollectionViewCellID = @"TagViewCollectionViewCell";
     _collectionView.allowsSelection   = allowsSelection;
     
 }
-
 -(void)setLongPressMove:(BOOL)longPressMove{
     
     _longPressMove  =longPressMove;

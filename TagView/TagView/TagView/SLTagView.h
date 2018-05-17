@@ -98,7 +98,6 @@ IB_DESIGNABLE
 
 @property (nonatomic,strong,readonly) NSArray <NSString * > *selectedTags;
 
-
 @property (nonatomic,strong,readonly) NSArray <NSNumber *> *selectedIndexs;
 /**
  *  选择标签
