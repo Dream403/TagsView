@@ -301,13 +301,26 @@ static NSString * const CollectionViewCellID = @"TagViewCollectionViewCell";
     ;
     UICollectionView *collectionView = self.subviews.firstObject;
      collectionView.translatesAutoresizingMaskIntoConstraints = NO;
-
-    NSLayoutConstraint *leftContraint = [NSLayoutConstraint constraintWithItem:collectionView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
-    NSLayoutConstraint *rightContraint = [NSLayoutConstraint constraintWithItem:collectionView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
-    NSLayoutConstraint *topContraint = [NSLayoutConstraint constraintWithItem:collectionView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
-    NSLayoutConstraint *bottomContraint = [NSLayoutConstraint constraintWithItem:collectionView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
-    [self addConstraints:@[leftContraint,rightContraint,topContraint,bottomContraint]];
+//
+//    NSLayoutConstraint *leftContraint = [NSLayoutConstraint constraintWithItem:collectionView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
+//    NSLayoutConstraint *rightContraint = [NSLayoutConstraint constraintWithItem:collectionView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
+//    NSLayoutConstraint *topContraint = [NSLayoutConstraint constraintWithItem:collectionView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:0];
+//    NSLayoutConstraint *bottomContraint = [NSLayoutConstraint constraintWithItem:collectionView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
+//    [self addConstraints:@[leftContraint,rightContraint,topContraint,bottomContraint]];
     
+    NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(collectionView);
+    //约束1 横向
+    [self addConstraints:
+     [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[collectionView]|"
+                                             options:0
+                                             metrics:nil
+                                               views:viewsDictionary]];
+    //约束2 纵向
+    [self addConstraints:
+     [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[collectionView]|"
+                                             options:0
+                                             metrics:nil
+                                               views:viewsDictionary]];
     CGRect  frame = self.frame;
     frame.size.height = self.intrinsicContentSize.height;
     self.frame = frame; 
