@@ -321,9 +321,6 @@ static NSString * const CollectionViewCellID = @"TagViewCollectionViewCell";
                                              options:0
                                              metrics:nil
                                                views:viewsDictionary]];
-    CGRect  frame = self.frame;
-    frame.size.height = self.intrinsicContentSize.height;
-    self.frame = frame; 
 }
 - (CGSize)intrinsicContentSize {
     CGSize contentSize = self.collectionView.collectionViewLayout.collectionViewContentSize;
